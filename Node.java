@@ -10,29 +10,9 @@ public class Node {
 	}
 
 	// TODO проверку на уже присутствия ребенка вчисле детей и пр. проверки
-	// TODO вывод ошибок
-	public void addChildrens(Node ... nodeChildrens){
-		for (Node children : nodeChildrens) {
+	public void addChildrens(Node ... childrens){
+		for (Node children : childrens) {
 			this.childrens.add(children);
-			if (person.getSex() == Sex.male){
-				children.getPerson().setIdFather(person.getId());
-			} else if (person.getSex() == Sex.female) {
-				children.getPerson().setIdMother(person.getId());
-			} else {
-				System.out.println("ошибка, неопределенный пол");
-			}
-		}
-	}
-
-	static void printGeoTree(Node n, String spa) {
-		if (n != null) {
-			System.out.println(spa + n.person.getFirstName() + " " + n.person.getLastName());
-
-			if (n.childrens != null) {
-				for (Node children : n.childrens) {
-					printGeoTree(children, spa + "  ");
-				}
-			}
 		}
 	}
 
@@ -43,4 +23,34 @@ public class Node {
 	public ArrayList<Node> getChildrens() {
 		return childrens;
 	}
+
+	public Boolean hasRelatives(Person person){
+		if (this.idRelatives(person) > -1)
+			return true;
+		else
+			return false;
+	}
+
+	public int idRelatives(Person person){
+		for (Relationship relationship : person.getRelationships()) {
+
+			if (relationship.getIdRelative() == 
+		}
+	}
+
+	public int n(Node ){
+
+	}
+
+	// static void printGeoTree(Node n, String spa) {
+	// 	if (n != null) {
+	// 		System.out.println(spa + n.person.getFirstName() + " " + n.person.getLastName());
+
+	// 		if (n.childrens != null) {
+	// 			for (Node children : n.childrens) {
+	// 				printGeoTree(children, spa + "  ");
+	// 			}
+	// 		}
+	// 	}
+	// }
 }

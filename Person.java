@@ -1,5 +1,6 @@
 package FamilyTree;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Person {
@@ -7,10 +8,9 @@ public class Person {
 	private String firstName = "";
 	private String lastName = "";
 	private Sex sex = Sex.unspecified;
-	private int idFather = -1;
-	private int idMother = -1;
+	private ArrayList<Relationship> relationships = new ArrayList<>();
 
-	public Person(String firstName, String lastName, Sex sex, int id) {
+	private Person(String firstName, String lastName, Sex sex, int id) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.sex = sex;
@@ -21,18 +21,8 @@ public class Person {
 		this(firstName, lastName, male, new generateId().genId());
 	}
 
-	
-
 	public int getId() {
 		return id;
-	}
-
-	public void setIdFather(int idFather) {
-		this.idFather = idFather;
-	}
-
-	public void setIdMother(int idMother) {
-		this.idMother = idMother;
 	}
 
 	public Sex getSex() {
@@ -43,9 +33,62 @@ public class Person {
 		return firstName;
 	}
 
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void addRelationships(Relationship ... relationships){
+		for (Relationship relationship : relationships) {
+			this.relationships.add(relationship);
+		}
+	}
+
+	public void remuveRelationships(Relationship ... relationships){
+		for (Relationship relationship : relationships) {
+			for (int i = 0; i < relationships.length; i++) {
+				if (this.relationships.get(i).equals(relationship)) {
+					this.relationships.remove(i);
+				}
+			}
+		}
+	}
+
+	public Boolean hasRelatives(Node geoTree){
+		if (this.idRelatives(geoTree) > -1)
+			return true;
+		else
+			return false;
+	}
+
+	public int idRelatives(Node geoTree){
+		for (Relationship relationship : relationships) {
+			for (Person relationship2 : geoTree.getChildrens()) {
+				geoTree.getChildrens();
+			} 
+		}
+	}
+
+	public ArrayList<Relationship> getRelationships() {
+		return relationships;
+	}
+
+	// public int findIdRelativ(int idRelative){
+	// 	for (int i = 0; i < relationships.size(); i++) {
+	// 		if (this.relationships.get(i).getIdRelative() == idRelative){
+
+
+	// 		}
+	// 	}
+	// 	return 
+	// }
 
 }
 
