@@ -1,7 +1,6 @@
 package FamilyTree;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Program
@@ -9,36 +8,28 @@ import java.util.List;
 public class Program {
 
 	public static void main(String[] args) {
-		List<Person> listP = new ArrayList<>();
-		Person p = new Person("firstName", "lastName", Sex.male);
-		Person ch = new Person("Childr1", "lastName", Sex.male);
-		Person ch1 = new Person("Childr2", "lastName", Sex.female);
-		listP.add(p);
-		listP.add(ch);
-		listP.add(ch1);
-		p.addRelationships(new Relationship(Kinship.descendant(0), ch.getId()));
-		p.addRelationships(new Relationship(Kinship.descendant(0), ch1.getId()));
-		for (int i = 0; i < p.getRelationships().size(); i++) {
-			int idCh = p.getRelationships().get(i).getIdRelative();
-			for (int j = 0; j < listP.size(); j++) {
-				if (listP.get(j).getId() == idCh){
-					System.out.println(listP.get(j).getFirstName());
-				}
-			}
+		Person person = new Person("Олег", "Лодыжко", Sex.male);
+		Person sun = new Person("Петр", "Лодыжко", Sex.male);
+		Person daughter = new Person("Лиза", "Капустникова", Sex.female);
+		Person father = new Person("Электрон", "Лодыжко", Sex.male);
+		Person mother = new Person("Вера", "Лодыжко", Sex.female);
+		Person[] persons = {person, sun, daughter, father, mother};
+		person.addRelationships(new Relationship(Kinship.ancestor(0), father));
+		person.addRelationships(new Relationship(Kinship.ancestor(0), mother));
+		person.addRelationships(new Relationship(Kinship.descendant(0), sun));
+		person.addRelationships(new Relationship(Kinship.descendant(0), daughter));
+		Repository rep = new Repository(persons);
+		ArrayList<Person> ch = new Researche1().getChildrens(rep, person.getId());
+		System.out.print("Дети " + person + ": ");
+		for (Person children : ch) {
+			System.out.print(children + ", ");
 		}
-		// System.out.println(p.getRelationships().get);
-		// Kinship k = Kinship.ancestor(1);
-		// System.out.println(k);
-		// Person stepan = new Person("Stepan", "B", Sex.male);
-		// Node nodeStepan = new Node(stepan);
-		// Person children = new Person("StepanCH1", "B", Sex.female);
-		// nodeStepan.addChildrens(new Node(children));
-		// children = new Person("StepanCH12", "B", Sex.male);
-		// nodeStepan.addChildrens(new Node(children));
 
-		// Person fatherS = new Person("FStepan", "B", Sex.male);
-		// Node nodeFatherS = new Node(fatherS);
-		// nodeFatherS.addChildrens(nodeStepan);
-		// Node.printGeoTree(nodeFatherS, " ");
+		System.out.println();
+		ArrayList<Person> par = new Researche2().getParents(rep, person.getId());
+		System.out.print("Родители " + person + ": ");
+		for (Person parent : par) {
+			System.out.print(parent + ", ");
+		}
 	}
 }

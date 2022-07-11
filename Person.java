@@ -48,6 +48,7 @@ public class Person {
 	public void addRelationships(Relationship ... relationships){
 		for (Relationship relationship : relationships) {
 			this.relationships.add(relationship);
+			relationship.getRelative().relationships.add(relationship);
 		}
 	}
 
@@ -56,23 +57,9 @@ public class Person {
 			for (int i = 0; i < relationships.length; i++) {
 				if (this.relationships.get(i).equals(relationship)) {
 					this.relationships.remove(i);
+					relationship.getRelative().remuveRelationships(relationship);
 				}
 			}
-		}
-	}
-
-	public Boolean hasRelatives(Node geoTree){
-		if (this.idRelatives(geoTree) > -1)
-			return true;
-		else
-			return false;
-	}
-
-	public int idRelatives(Node geoTree){
-		for (Relationship relationship : relationships) {
-			for (Person relationship2 : geoTree.getChildrens()) {
-				geoTree.getChildrens();
-			} 
 		}
 	}
 
@@ -80,15 +67,17 @@ public class Person {
 		return relationships;
 	}
 
-	// public int findIdRelativ(int idRelative){
-	// 	for (int i = 0; i < relationships.size(); i++) {
-	// 		if (this.relationships.get(i).getIdRelative() == idRelative){
-
-
-	// 		}
-	// 	}
-	// 	return 
-	// }
+	@Override
+	public String toString() {
+		String sex = "";
+		if (getSex() == Sex.male)
+			sex = "М";
+		else if (getSex() == Sex.female) 
+			sex = "Ж";
+		else 
+			sex = "Не указан";
+		return String.format("%s %s(%s)", getFirstName(), getLastName(), sex);
+	}
 
 }
 
@@ -97,5 +86,4 @@ class generateId {
 	public int genId() {
 		return new Random().nextInt(Integer.MAX_VALUE);
 	}
-
 }
