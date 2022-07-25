@@ -154,7 +154,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("%d: %s %s(%s)", id, getFirstName(), getLastName(), sex.getSex());
+        return String.format("%s %s(%s)", getFirstName(), getLastName(), sex.getSex());
     }
 
     @Override

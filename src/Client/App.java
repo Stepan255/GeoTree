@@ -23,13 +23,13 @@ public class App {
         StringBuilder text = new StringBuilder()
                 .append("\n ==== \n")
                 .append("1 - Show persons\n")
-                .append("2 - Find children\n")
-                .append("3 - Find parent\n")
+                .append("2 - Find childrens\n")
+                .append("3 - Find parents\n")
 //                .append("4 - add person\n")
                 .append("0 - exit\n")
                 .append("\n");
 
-        showPersons(storage.getPersons());
+        showPersonsWithId(storage.getPersons());
         programCycle(text);
     }
 
@@ -58,10 +58,17 @@ public class App {
         }
     }
 
+    private void showPersonsWithId(ArrayList<Person> storage) {
+        for (Person person :
+                storage) {
+            view.show(String.format("%d:%s\n", person.getId(), person.toString()));
+        }
+    }
+
     private void showPersons(ArrayList<Person> storage) {
         for (Person person :
                 storage) {
-            view.show(String.format("%s; ", person.toString()));
+            view.show(String.format("%s\n", person.toString()));
         }
     }
 
