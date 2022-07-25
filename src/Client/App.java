@@ -6,6 +6,8 @@ import FamilyTree.src.Core.Presenters.Presenter;
 import FamilyTree.src.Core.Views.View;
 import FamilyTree.src.Mathematics.IsNumeric;
 import FamilyTree.src.Research.FindChildrens;
+import FamilyTree.src.Research.FindParents;
+import FamilyTree.src.Research.FindRelatoves;
 
 import java.util.ArrayList;
 
@@ -25,12 +27,12 @@ public class App {
                 .append("\n ==== \n")
                 .append("1 - Show persons\n")
                 .append("2 - Find children\n")
-//                .append("3 - Find parent\n")
+                .append("3 - Find parent\n")
 //                .append("4 - add person\n")
-//                .append("0 - exit\n");
+                .append("0 - exit\n")
                 .append("\n");
 
-
+        showPersons(storage.getPersons());
         programCycle(text);
     }
 
@@ -47,9 +49,12 @@ public class App {
                     view.show("Children " + person + " is: ");
                     showPersons(childrens);
                     break;
-//                case "3":
-//                    presenter.show();
-//                    break;
+                case "3":
+                    Person personResearch = getPerson();
+                    ArrayList<Person> parents = new FindParents(storage, personResearch).startResearch();
+                    view.show("Parents " + personResearch + " is: ");
+                    showPersons(parents);
+                    break;
                 case "0":
                     return;
             }
@@ -84,8 +89,7 @@ public class App {
             numberString = view.get();
             checkNumeric = !(numeric.isNumeric(numberString));
         } while (checkNumeric);
-        int number = Integer.parseInt(numberString);
-        return number;
+        return Integer.parseInt(numberString);
     }
 
 
