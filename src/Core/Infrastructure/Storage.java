@@ -1,14 +1,14 @@
-package FamilyTree;
+package FamilyTree.src.Core.Infrastructure;
+
+import FamilyTree.src.Core.Models.Person.Person;
 
 import java.util.ArrayList;
 
-public class Repository {
-	private ArrayList<Person> persons = new ArrayList<>();
+public class Storage {
+	private ArrayList<Person> persons;
 
-	public Repository(Person ... persons) {
-		for (Person person : persons) {
-			this.persons.add(person);
-		}
+	public Storage() {
+		persons = new ArrayList<>();
 	}
 
 	public void create(Person ... persons){
@@ -27,6 +27,6 @@ public class Repository {
 				return person;
 			}
 		}
-		return new Person("firstName", "lastName", Sex.male);
+		return Person.nullPerson();
 	}
 }

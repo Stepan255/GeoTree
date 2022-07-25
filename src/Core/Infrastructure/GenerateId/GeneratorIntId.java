@@ -1,8 +1,8 @@
-package FamilyTree.src.Core.GenerateId;
+package FamilyTree.src.Core.Infrastructure.GenerateId;
 
 import java.util.Random;
 
-public class GeneratorIntId implements GenerateId {
+public class GeneratorIntId implements GenerateIntId {
 
 
         public int genId() {

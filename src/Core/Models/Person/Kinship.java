@@ -1,9 +1,10 @@
-package FamilyTree;
+package FamilyTree.src.Core.Models.Person;
 
 public enum Kinship {
-	ancestor (-1),
-	descendant(-1),
-	unspecified(-1);
+	ANCESTOR(0),
+	DESCENDANT(0),
+	SIBLINGS(0),
+	UNSPECIFIED(0);
 
 	private int generation;
 	Kinship(int generation){
@@ -11,17 +12,22 @@ public enum Kinship {
 	}
 
 	public static Kinship ancestor(int generation){
-		Kinship kinship = Kinship.valueOf("ancestor");
+		Kinship kinship = Kinship.ANCESTOR;
 		kinship.setGeneration(generation);
 		return kinship;
 	}
 
 	public static Kinship descendant(int generation){
-		Kinship kinship = Kinship.valueOf("descendant");
+		Kinship kinship = Kinship.DESCENDANT;
 		kinship.setGeneration(generation);
 		return kinship;
 	}
 
+	public static Kinship siblings(int generation){
+		Kinship kinship = Kinship.SIBLINGS;
+		kinship.setGeneration(generation);
+		return kinship;
+	}
 	public int getGeneration() {
 		return generation;
 	}
