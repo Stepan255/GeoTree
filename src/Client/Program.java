@@ -13,11 +13,11 @@ import FamilyTree.src.Core.Views.ViewConsole;
 public class Program {
 
 	public static void main(String[] args) {
-		Person person = new Person("Олег", "Лодыжко", Sex.MALE, new GeneratorIntId());
-		Person sun = new Person("Петр", "Лодыжко", Sex.MALE, new GeneratorIntId());
-		Person daughter = new Person("Лиза", "Капустникова", Sex.FEMALE, new GeneratorIntId());
-		Person father = new Person("Электрон", "Лодыжко", Sex.MALE, new GeneratorIntId());
-		Person mother = new Person("Вера", "Лодыжко", Sex.FEMALE, new GeneratorIntId());
+		Person person = new Person("Oleg", "Ankle", Sex.MALE, new GeneratorIntId());
+		Person sun = new Person("Petr", "Ankle", Sex.MALE, new GeneratorIntId());
+		Person daughter = new Person("Liza", "Ankle", Sex.FEMALE, new GeneratorIntId());
+		Person father = new Person("Sasha", "Ankle", Sex.MALE, new GeneratorIntId());
+		Person mother = new Person("Vera", "Ankle", Sex.FEMALE, new GeneratorIntId());
 		Person[] persons = {person, sun, daughter, father, mother};
 		person.addRelationship(Kinship.ancestor(0), father);
 		person.addRelationship(Kinship.ancestor(0), mother);

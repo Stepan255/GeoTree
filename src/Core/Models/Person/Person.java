@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Person {
 
-    private class Relationship {
+        private class Relationship {
         private Kinship kinship;
         private Person relative;
 
@@ -146,7 +146,12 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("%s %s(%s)", getFirstName(), getLastName(), sex.getSex());
+        return String.format("%d: %s %s(%s)", id, getFirstName(), getLastName(), sex.getSex());
     }
 
+    @Override
+    public boolean equals(Object person) {
+        Person person1 = (Person)(person);
+        return this.id == person1.id && this.firstName == person1.firstName && this.lastName == person1.lastName && this.sex == person1.sex;
+    }
 }

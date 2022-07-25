@@ -11,6 +11,6 @@ public class ViewConsole implements View{
 
     @Override
     public void show(String value) {
-        System.out.println(value);
+        System.out.print(value);
     }
 }

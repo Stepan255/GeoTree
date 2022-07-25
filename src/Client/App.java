@@ -7,6 +7,8 @@ import FamilyTree.src.Core.Views.View;
 import FamilyTree.src.Mathematics.IsNumeric;
 import FamilyTree.src.Research.FindChildrens;
 
+import java.util.ArrayList;
+
 public class App {
     Storage storage;
     View view;
@@ -22,10 +24,11 @@ public class App {
         StringBuilder text = new StringBuilder()
                 .append("\n ==== \n")
                 .append("1 - Show persons\n")
-                .append("2 - Find children\n");
+                .append("2 - Find children\n")
 //                .append("3 - Find parent\n")
 //                .append("4 - add person\n")
 //                .append("0 - exit\n");
+                .append("\n");
 
 
         programCycle(text);
@@ -36,13 +39,13 @@ public class App {
             view.show(sb.toString());
             switch (view.get()) {
                 case "1":
-                    for (Person person :
-                            new FindChildrens(storage, getPerson()).startResearch()) {
-                        view.show(String.format("%s; ", person.toString()));
-                    }
+                    showPersons(storage.getPersons());
                     break;
                 case "2":
-                    presenter.show();
+                    Person person = getPerson();
+                    ArrayList<Person> childrens = new FindChildrens(storage, person).startResearch();
+                    view.show("Children " + person + " is: ");
+                    showPersons(childrens);
                     break;
 //                case "3":
 //                    presenter.show();
@@ -53,15 +56,21 @@ public class App {
         }
     }
 
+    private void showPersons(ArrayList<Person> storage) {
+        for (Person person :
+                storage) {
+            view.show(String.format("%s; ", person.toString()));
+        }
+    }
+
     // TODO вынести метод в класс
     private Person getPerson() {
-        String numberString;
-        Integer id;
+        int id;
         Person person;
         do {
             id = getNumber();
             person = storage.getPerson(id);
-        } while (person == Person.nullPerson());
+        } while (person.equals(Person.nullPerson()));
         return person;
     }
 
@@ -71,14 +80,12 @@ public class App {
         IsNumeric numeric = new IsNumeric();
         boolean checkNumeric;
         do {
-            view.show("Введите идентификатор человека для исследования");
+            view.show("Enter the ID of the person to investigate\n");
             numberString = view.get();
             checkNumeric = !(numeric.isNumeric(numberString));
         } while (checkNumeric);
-        if (numberString == null){
-            return 0;
-        }
-        return Integer.getInteger(numberString);
+        int number = Integer.parseInt(numberString);
+        return number;
     }
 
 
