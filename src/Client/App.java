@@ -2,7 +2,6 @@ package FamilyTree.src.Client;
 
 import FamilyTree.src.Core.Infrastructure.Storage;
 import FamilyTree.src.Core.Models.Person.Person;
-import FamilyTree.src.Core.Presenters.Presenter;
 import FamilyTree.src.Core.Views.View;
 import FamilyTree.src.Mathematics.IsNumeric;
 import FamilyTree.src.Research.FindChildrens;
@@ -14,12 +13,10 @@ import java.util.ArrayList;
 public class App {
     Storage storage;
     View view;
-    Presenter presenter;
 
     public App(Storage storage, View view) {
         this.storage = storage;
         this.view = view;
-        this.presenter = new Presenter(storage, view);
     }
 
     public void start() {

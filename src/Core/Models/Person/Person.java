@@ -80,10 +80,7 @@ public class Person {
 
     public boolean isRelative(Person relative) {
         Kinship kinship = getKinship(relative);
-        if (kinship == Kinship.UNSPECIFIED) {
-            return false;
-        }
-        return true;
+        return kinship != Kinship.UNSPECIFIED;
     }
 
     public Kinship getKinship(Person relative) {
@@ -152,6 +149,6 @@ public class Person {
     @Override
     public boolean equals(Object person) {
         Person person1 = (Person)(person);
-        return this.id == person1.id && this.firstName == person1.firstName && this.lastName == person1.lastName && this.sex == person1.sex;
+        return this.id == person1.id && this.firstName.equals(person1.firstName) && this.lastName.equals(person1.lastName) && this.sex == person1.sex;
     }
 }

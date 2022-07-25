@@ -3,6 +3,7 @@ package FamilyTree.src.Core.Infrastructure;
 import FamilyTree.src.Core.Models.Person.Person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Storage {
 	private ArrayList<Person> persons;
@@ -12,9 +13,7 @@ public class Storage {
 	}
 
 	public void create(Person ... persons){
-		for (Person person : persons) {
-			this.persons.add(person);
-		}
+		Collections.addAll(this.persons, persons);
 	}
 
 	public ArrayList<Person> getPersons() {
