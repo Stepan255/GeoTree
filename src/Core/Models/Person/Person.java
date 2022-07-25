@@ -104,6 +104,14 @@ public class Person {
         return relatives;
     }
 
+    public ArrayList<Person> getAllRelatives() {
+        ArrayList<Person> relatives = new ArrayList<>();
+        relatives.addAll(getRelatives(Kinship.ANCESTOR));
+        relatives.addAll(getRelatives(Kinship.DESCENDANT));
+        relatives.addAll(getRelatives(Kinship.SIBLINGS));
+        return relatives;
+    }
+
     public void addRelationship(Kinship kinship, Person relative) {
         addRelationships(new Relationship(kinship, relative));
     }
@@ -113,12 +121,15 @@ public class Person {
             Person relative = relationship.getRelative();
             if (!isRelative(relative)) {
                 this.relationships.add(relationship);
-                relative.relationships.add(relationship);
+                Kinship kinship = Kinship.getKinshipByRelative(relationship.kinship);
+                relative.relationships.add(new Relationship(kinship, this));
             } else {
                 System.out.println("Такой родственник уже существует");
             }
         }
     }
+
+
 
     public void removeRelationship(Person relative) {
         if (isRelative(relative)) {

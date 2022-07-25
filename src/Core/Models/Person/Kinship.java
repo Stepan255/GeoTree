@@ -28,6 +28,19 @@ public enum Kinship {
 		kinship.setGeneration(generation);
 		return kinship;
 	}
+
+	public static Kinship getKinshipByRelative(Kinship kinship){
+		if (kinship == Kinship.ANCESTOR){
+			return Kinship.descendant(kinship.getGeneration());
+		}
+		if (kinship == Kinship.DESCENDANT){
+			return Kinship.ancestor(kinship.getGeneration());
+		}
+		if (kinship == Kinship.SIBLINGS){
+			return Kinship.siblings(kinship.getGeneration() * (-1));
+		}
+		return Kinship.UNSPECIFIED;
+	}
 	public int getGeneration() {
 		return generation;
 	}
