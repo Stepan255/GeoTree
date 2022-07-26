@@ -19,7 +19,7 @@ public class Presenter {
         return storage;
     }
 
-    public  void show(){
+    public void show() {
         show(false);
     }
 
@@ -27,7 +27,7 @@ public class Presenter {
         for (Person person :
                 this.storage.getPersons()) {
             String text = "";
-            if(showId){
+            if (showId) {
                 text = person.getId() + ": ";
             }
             text += person.toString();

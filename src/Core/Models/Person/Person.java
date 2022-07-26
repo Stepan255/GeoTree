@@ -4,7 +4,7 @@ import FamilyTree.src.Core.Infrastructure.GenerateId.GenerateIntId;
 
 import java.util.ArrayList;
 
-public class Person implements Comparable<Person>{
+public class Person implements Comparable<Person> {
 
     @Override
     public int compareTo(Person o) {

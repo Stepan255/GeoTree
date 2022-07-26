@@ -6,7 +6,7 @@ import FamilyTree.src.Core.Models.Person.Person;
 
 import java.util.ArrayList;
 
-public abstract class FindRelatoves implements Research{
+public abstract class FindRelatoves implements Research {
     private Storage object;
     private Person subject;
 
