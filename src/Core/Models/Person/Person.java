@@ -4,7 +4,12 @@ import FamilyTree.src.Core.Infrastructure.GenerateId.GenerateIntId;
 
 import java.util.ArrayList;
 
-public class Person {
+public class Person implements Comparable<Person>{
+
+    @Override
+    public int compareTo(Person o) {
+        return this.firstName.compareTo(o.firstName);
+    }
 
     private class Relationship {
         private Kinship kinship;

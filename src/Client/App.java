@@ -9,6 +9,8 @@ import FamilyTree.src.Research.FindChildrens;
 import FamilyTree.src.Research.FindParents;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class App {
     private View view;
@@ -25,7 +27,7 @@ public class App {
                 .append("1 - Show persons\n")
                 .append("2 - Find childrens\n")
                 .append("3 - Find parents\n")
-//                .append("4 - add person\n")
+                .append("4 - sort geoTree by name\n")
                 .append("0 - exit\n")
                 .append("\n");
 
@@ -51,6 +53,10 @@ public class App {
                     ArrayList<Person> parents = new FindParents(personResearch).startResearch();
                     view.show("Parents " + personResearch + " is: \n");
                     new Presenter(view, new Storage(parents)).show();
+                    break;
+                case "4":
+                    Collections.sort(presenter.getStorage().getPersons());
+                    presenter.show(false);
                     break;
                 case "0":
                     return;
