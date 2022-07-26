@@ -12,6 +12,11 @@ public class Storage {
 		persons = new ArrayList<>();
 	}
 
+	public Storage(ArrayList<Person> persons){
+		this();
+		create(persons.toArray(new Person[persons.size()]));
+	}
+
 	public void create(Person ... persons){
 		Collections.addAll(this.persons, persons);
 	}

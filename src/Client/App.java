@@ -1,5 +1,6 @@
 package FamilyTree.src.Client;
 
+import FamilyTree.src.Core.Infrastructure.Storage;
 import FamilyTree.src.Core.Models.Person.Person;
 import FamilyTree.src.Core.Presenter.Presenter;
 import FamilyTree.src.Core.Views.View;
@@ -28,7 +29,7 @@ public class App {
                 .append("0 - exit\n")
                 .append("\n");
 
-        presenter.show(false);
+        presenter.show(true);
         programCycle(text);
     }
 
@@ -42,32 +43,18 @@ public class App {
                 case "2":
                     Person person = getPerson();
                     ArrayList<Person> childrens = new FindChildrens(person).startResearch();
-                    view.show("Children " + person + " is: ");
-                    showPersons(childrens);
+                    view.show("Children " + person + " is: \n");
+                    new Presenter(view, new Storage(childrens)).show();
                     break;
                 case "3":
                     Person personResearch = getPerson();
                     ArrayList<Person> parents = new FindParents(personResearch).startResearch();
-                    view.show("Parents " + personResearch + " is: ");
-                    showPersons(parents);
+                    view.show("Parents " + personResearch + " is: \n");
+                    new Presenter(view, new Storage(parents)).show();
                     break;
                 case "0":
                     return;
             }
-        }
-    }
-
-    private void showPersonsWithId(ArrayList<Person> storage) {
-        for (Person person :
-                storage) {
-            view.show(String.format("%d:%s\n", person.getId(), person.toString()));
-        }
-    }
-
-    private void showPersons(ArrayList<Person> storage) {
-        for (Person person :
-                storage) {
-            view.show(String.format("%s\n", person.toString()));
         }
     }
 
