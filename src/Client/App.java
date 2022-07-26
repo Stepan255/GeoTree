@@ -1,22 +1,21 @@
 package FamilyTree.src.Client;
 
-import FamilyTree.src.Core.Infrastructure.Storage;
 import FamilyTree.src.Core.Models.Person.Person;
+import FamilyTree.src.Core.Presenter.Presenter;
 import FamilyTree.src.Core.Views.View;
-import FamilyTree.src.Mathematics.IsNumeric;
+import FamilyTree.src.Mathematics.IntUtil;
 import FamilyTree.src.Research.FindChildrens;
 import FamilyTree.src.Research.FindParents;
-import FamilyTree.src.Research.FindRelatoves;
 
 import java.util.ArrayList;
 
 public class App {
-    Storage storage;
-    View view;
+    private View view;
+    private Presenter presenter;
 
-    public App(Storage storage, View view) {
-        this.storage = storage;
+    public App(Presenter presenter, View view) {
         this.view = view;
+        this.presenter = presenter;
     }
 
     public void start() {
@@ -29,7 +28,7 @@ public class App {
                 .append("0 - exit\n")
                 .append("\n");
 
-        showPersonsWithId(storage.getPersons());
+        presenter.show(false);
         programCycle(text);
     }
 
@@ -38,17 +37,17 @@ public class App {
             view.show(sb.toString());
             switch (view.get()) {
                 case "1":
-                    showPersons(storage.getPersons());
+                    presenter.show(false);
                     break;
                 case "2":
                     Person person = getPerson();
-                    ArrayList<Person> childrens = new FindChildrens(storage, person).startResearch();
+                    ArrayList<Person> childrens = new FindChildrens(person).startResearch();
                     view.show("Children " + person + " is: ");
                     showPersons(childrens);
                     break;
                 case "3":
                     Person personResearch = getPerson();
-                    ArrayList<Person> parents = new FindParents(storage, personResearch).startResearch();
+                    ArrayList<Person> parents = new FindParents(personResearch).startResearch();
                     view.show("Parents " + personResearch + " is: ");
                     showPersons(parents);
                     break;
@@ -72,26 +71,23 @@ public class App {
         }
     }
 
-    // TODO вынести метод в класс
     private Person getPerson() {
         int id;
         Person person;
         do {
             id = getNumber();
-            person = storage.getPerson(id);
+            person = presenter.getStorage().getPerson(id);
         } while (person.equals(Person.nullPerson()));
         return person;
     }
 
-    // TODO связан с getPerson()
     private int getNumber() {
         String numberString;
-        IsNumeric numeric = new IsNumeric();
         boolean checkNumeric;
         do {
             view.show("Enter the ID of the person to investigate\n");
             numberString = view.get();
-            checkNumeric = !(numeric.isNumeric(numberString));
+            checkNumeric = !(IntUtil.isNumeric(numberString));
         } while (checkNumeric);
         return Integer.parseInt(numberString);
     }

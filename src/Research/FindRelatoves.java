@@ -7,8 +7,8 @@ import FamilyTree.src.Core.Models.Person.Person;
 import java.util.ArrayList;
 
 public abstract class FindRelatoves implements Research{
-    Storage object;
-    Person subject;
+    private Storage object;
+    private Person subject;
 
     public FindRelatoves(Storage object, Person subject) {
         this.object = object;

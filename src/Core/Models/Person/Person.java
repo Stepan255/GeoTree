@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Person {
 
-        private class Relationship {
+    private class Relationship {
         private Kinship kinship;
         private Person relative;
 
@@ -130,7 +130,6 @@ public class Person {
     }
 
 
-
     public void removeRelationship(Person relative) {
         if (isRelative(relative)) {
             removeRelationships();
@@ -159,7 +158,7 @@ public class Person {
 
     @Override
     public boolean equals(Object person) {
-        Person person1 = (Person)(person);
+        Person person1 = (Person) (person);
         return this.id == person1.id && this.firstName.equals(person1.firstName) && this.lastName.equals(person1.lastName) && this.sex == person1.sex;
     }
 }

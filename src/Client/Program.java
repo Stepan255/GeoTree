@@ -5,6 +5,7 @@ import FamilyTree.src.Core.Infrastructure.Storage;
 import FamilyTree.src.Core.Models.Person.Kinship;
 import FamilyTree.src.Core.Models.Person.Person;
 import FamilyTree.src.Core.Models.Person.Sex;
+import FamilyTree.src.Core.Presenter.Presenter;
 import FamilyTree.src.Core.Views.ViewConsole;
 
 /**
@@ -25,7 +26,6 @@ public class Program {
 		person.addRelationship(Kinship.descendant(0), daughter);
 		Storage storage = new Storage();
 		storage.create(persons);
-
-		new App(storage, new ViewConsole()).start();
+		new App(new Presenter(new ViewConsole(), storage), new ViewConsole()).start();
 	}
 }

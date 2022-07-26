@@ -7,8 +7,8 @@ import FamilyTree.src.Core.Models.Person.Person;
 import java.util.ArrayList;
 
 public class FindChildrens extends FindRelatoves {
-    public FindChildrens(Storage object, Person subject) {
-        super(object, subject);
+    public FindChildrens(Person subject) {
+        super(new Storage(), subject);
     }
 
     @Override

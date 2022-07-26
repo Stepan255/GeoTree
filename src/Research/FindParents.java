@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class FindParents extends FindRelatoves {
 
-    public FindParents(Storage object, Person subject) {
-        super(object, subject);
+    public FindParents(Person subject) {
+        super(new Storage(), subject);
     }
 
     @Override
